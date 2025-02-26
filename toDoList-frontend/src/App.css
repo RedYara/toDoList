@@ -1,0 +1,5 @@
+html {
+    font-family: serif;
+    background: rgb(229, 0, 255);
+    background: linear-gradient(342deg, rgba(229, 0, 255, 1) 0%, rgba(0, 226, 255, 1) 100%);
+}

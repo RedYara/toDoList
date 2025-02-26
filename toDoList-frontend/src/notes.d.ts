@@ -1,5 +1,13 @@
-interface ToDoList{
-    text: string;
+// interface ToDoList{
+    // text: string;
+    // id: number;
+    // droppableId: number;
+// }
+
+interface ToDoListResponse{
     id: number;
-    droppableId: number;
+    title: string;
+    isDone: boolean;
+    dashboardId: number;
+    createdAt: Date;
 }

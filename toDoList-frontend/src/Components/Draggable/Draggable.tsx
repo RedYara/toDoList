@@ -1,14 +1,18 @@
 import { useDraggable } from "@dnd-kit/core";
 import { CSS } from "@dnd-kit/utilities";
-import React from "react";
+import React, { SyntheticEvent } from "react";
+import DeleteToDoItem from "../ToDoItem/DeleteToDoItem/DeleteToDoItem";
 
 interface DraggableProps {
-  text: string;
+  title: string;
   id: number;
+  createdAt: string;
+  isDone: boolean;
+  onSubmitDeleteHandle: (e: SyntheticEvent) => void;
 }
 
 
-const Draggable = ({text, id} : DraggableProps) => {
+const Draggable = ({title: text, id, onSubmitDeleteHandle, createdAt, isDone} : DraggableProps) => {
   const { attributes, listeners, setNodeRef, transform } = useDraggable({
     id: id,
   });
@@ -18,9 +22,18 @@ const Draggable = ({text, id} : DraggableProps) => {
   };
 
   return (
-    <button ref={setNodeRef} style={style} {...listeners} {...attributes} className="bg-blue-500 text-white px-4 py-2 rounded-md shadow-md">
-      {text}
-    </button>
+    <>
+    <div ref={setNodeRef} style={style} {...listeners} {...attributes} className="bg-blue-500 text-white px-4 py-2 rounded-md shadow-md">
+      <span className="text-gray-300 text-sm">{isDone ? "Выполнено" : "Создано"}: {createdAt.toString()}</span>
+      <div className="flex justify-between items-center gap-2">
+        <span className="text-lg">
+          {text} 
+        </span>
+        <DeleteToDoItem onSubmitDeleteHandle={onSubmitDeleteHandle} id={id}/>
+      </div>
+    </div>
+    
+    </>
   );
 };
 
